@@ -18,8 +18,8 @@
 // workflow: scan an inventory and value every item in chaos.
 // ============================================================================
 
-#include "sdk/PluginSDK.h"
-#include <imgui.h>
+#include "../../../POEFixer/plugin_sdk/PluginSDK.h"
+#include "../../../POEFixer/imgui/imgui.h"
 #include <vector>
 #include <string>
 #include <utility>

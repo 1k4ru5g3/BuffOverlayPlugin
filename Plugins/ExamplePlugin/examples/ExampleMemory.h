@@ -6,8 +6,8 @@
 // scanning, raw memory read, and the new RAII string/wstring read paths.
 // ============================================================================
 
-#include "sdk/PluginSDK.h"
-#include <imgui.h>
+#include "../../../POEFixer/plugin_sdk/PluginSDK.h"
+#include "../../../POEFixer/imgui/imgui.h"
 #include <vector>
 #include <cstdio>
 

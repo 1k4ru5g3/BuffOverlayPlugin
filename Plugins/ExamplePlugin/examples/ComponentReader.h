@@ -7,8 +7,8 @@
 // went through ComponentCache.HasLife() / ReadLifeComponent() etc.
 // ============================================================================
 
-#include "sdk/PluginSDK.h"
-#include <imgui.h>
+#include "../../../POEFixer/plugin_sdk/PluginSDK.h"
+#include "../../../POEFixer/imgui/imgui.h"
 #include "SdkStatus.h"
 #include <algorithm>
 #include <string>

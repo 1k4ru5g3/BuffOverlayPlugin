@@ -7,8 +7,8 @@
 // reads component data through ctx->Components.ReadXxx().
 // ============================================================================
 
-#include "sdk/PluginSDK.h"
-#include <imgui.h>
+#include "../../../POEFixer/plugin_sdk/PluginSDK.h"
+#include "../../../POEFixer/imgui/imgui.h"
 #include <algorithm>
 #include <cstring>
 #include <cstdio>

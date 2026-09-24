@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="ExamplePlugin.cpp" />
+    <ClCompile Include="..\..\POEFixer\imgui\imgui.cpp">
+      <Filter>imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\POEFixer\imgui\imgui_draw.cpp">
+      <Filter>imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\POEFixer\imgui\imgui_tables.cpp">
+      <Filter>imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\POEFixer\imgui\imgui_widgets.cpp">
+      <Filter>imgui</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="examples\ComponentReader.h">
+      <Filter>examples</Filter>
+    </ClInclude>
+    <ClInclude Include="examples\ExampleBuffs.h">
+      <Filter>examples</Filter>
+    </ClInclude>
+    <ClInclude Include="examples\ExampleEntities.h">
+      <Filter>examples</Filter>
+    </ClInclude>
+    <ClInclude Include="examples\ExampleEvents.h">
+      <Filter>examples</Filter>
+    </ClInclude>
+    <ClInclude Include="examples\ExampleInventory.h">
+      <Filter>examples</Filter>
+    </ClInclude>
+    <ClInclude Include="examples\ExampleLog.h">
+      <Filter>examples</Filter>
+    </ClInclude>
+    <ClInclude Include="examples\ExampleMemory.h">
+      <Filter>examples</Filter>
+    </ClInclude>
+    <ClInclude Include="examples\ExampleRender.h">
+      <Filter>examples</Filter>
+    </ClInclude>
+    <ClInclude Include="examples\ExampleSkills.h">
+      <Filter>examples</Filter>
+    </ClInclude>
+    <ClInclude Include="examples\ExampleTerrain.h">
+      <Filter>examples</Filter>
+    </ClInclude>
+    <ClInclude Include="examples\ExampleUiExplorer.h">
+      <Filter>examples</Filter>
+    </ClInclude>
+    <ClInclude Include="examples\SdkStatus.h">
+      <Filter>examples</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\POEFixer\plugin_sdk\PluginAbi.h">
+      <Filter>api</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\POEFixer\plugin_sdk\PluginSDK.h">
+      <Filter>api</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="examples">
+      <UniqueIdentifier>{b77e0693-7664-4924-99e7-59a4bfd53b2f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="imgui">
+      <UniqueIdentifier>{fef6a996-7625-47e2-a79c-f0a7cf264730}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="api">
+      <UniqueIdentifier>{b0d6a2ae-ab36-4f80-bf52-f893445d23b0}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

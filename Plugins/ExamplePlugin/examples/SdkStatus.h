@@ -2,8 +2,8 @@
 // Shared helpers for SDK-coverage status badges + Coverage Summary banner.
 
 #pragma once
-#include "sdk/PluginSDK.h"
-#include <imgui.h>
+#include "../../../POEFixer/plugin_sdk/PluginSDK.h"
+#include "../../../POEFixer/imgui/imgui.h"
 #include <string>
 
 namespace Examples {

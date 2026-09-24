@@ -21,8 +21,8 @@
 // ============================================================================
 #pragma once
 
-#include "sdk/PluginSDK.h"
-#include <imgui.h>
+#include "../../../POEFixer/plugin_sdk/PluginSDK.h"
+#include "../../../POEFixer/imgui/imgui.h"
 
 #include <chrono>
 #include <cstdint>
