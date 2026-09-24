@@ -316,6 +316,7 @@ inline const char* EntityTypeName(PluginSDK::EntityType t) {
         case E::AreaTransition:    return "Transition";
         case E::ExpeditionMarker:  return "Expedition";
         case E::ExpeditionRemnant: return "Remnant";
+        case E::AzmeriWisp:        return "Wisp";
         default:                   return "Unknown";
     }
 }
@@ -349,7 +350,7 @@ inline void DrawEntitiesPanel(const PluginSDK::Context* ctx,
     const char* typeNames[] = {
         "All", "Unidentified", "Chest", "NPC", "Player", "Shrine", "Monster",
         "DeliriumBomb", "DeliriumSpawner", "Important", "Item", "Renderable",
-        "AreaTransition", "ExpeditionMarker", "ExpeditionRemnant"
+        "AreaTransition", "ExpeditionMarker", "ExpeditionRemnant", "AzmeriWisp"
     };
     ImGui::Combo("Filter by Type", &typeFilter, typeNames, IM_ARRAYSIZE(typeNames));
 
