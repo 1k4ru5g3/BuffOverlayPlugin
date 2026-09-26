@@ -1,11 +1,9 @@
-# Build output (Visual Studio / MSBuild)
-x64/
-Release/
-Debug/
-bin/
-obj/
 .vs/
+x64/
+Debug/
+Release/
 *.user
-*.aps
-*.ipch
+*.suo
 *.VC.db
+*.VC.VC.opendb
+Plugins/BuffOverlay/config/

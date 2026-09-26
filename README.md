@@ -1,54 +1,79 @@
-# ExamplePlugin — POE2Fixer Plugin SDK Example
+# BuffOverlay for POE2Fixer
 
-A reference plugin demonstrating all features of the POE2Fixer Plugin SDK (v6). Use this as a starting point for building your own plugins.
+A customizable POE2Fixer SDK v6 overlay plugin for displaying Path of Exile 2 buff state.
 
-## What It Does
+## Features
 
-ExamplePlugin provides interactive demo tabs that showcase every SDK capability. When enabled in POE2Fixer, it adds a settings panel with the following example tabs:
+- Any number of independent buff trackers
+- Match buff names by **Exact**, **Starts with**, or **Contains**
+- Display **charges**, **custom text**, **icon**, **icon + charges**, or **icon + text**
+- Custom PNG/JPG/BMP icons loaded through Windows Imaging Component
+- Absolute X/Y positioning plus a draggable preview mode
+- Choose what happens when a buff is missing: **hide** or **show 0**
+- Optional charge summing if several matching buff entries exist
+- Debug window that lists all active buff names, charges and remaining time
+- Settings persisted in `Plugins/BuffOverlay/config/settings.txt`
 
-### Buff Inspector
-Displays the player's active buffs in real-time. Shows buff name, remaining time, charges, flask slot, and effectiveness. Includes text filtering and color-coded progress bars for buff duration.
+## Example: variable numeric suffix
 
-### Entity Explorer
-Lists all game entities (monsters, NPCs, chests, players, items) with their type, rarity, and nearby zone classification. Supports the entity watch mechanism — select any entity to inspect its full component data (Life, Render, Positioned, Targetable, Animated, Stats, Actor, Buffs) in a detailed tree view.
+If the active buff is named something like:
 
-### Inventory Inspector
-Accesses the ServerData debug interface to browse player inventories. Displays inventory slot grids with item details: base type, unique name, rarity, item level, mods (implicit, explicit, enchant, hellscape), identified/corrupted status, and stack sizes.
+`totem_ancestral_bond_reservation_79`
 
-### Memory Viewer
-Demonstrates direct game memory reading through the SDK. Includes a hex dump viewer at arbitrary addresses, typed `Read<T>` examples, pattern scan address resolution, and StdVector/StdList/StdMap container reading.
+and the final number changes, configure the tracker as:
 
-### UI Explorer
-Navigates the game's full UI element tree. Shows element properties (position, size, flags, type, scale, StringId, text content), recursive parent chain, and child traversal. Includes search by StringId and visual highlighting of selected elements on screen.
+- Buff name / pattern: `totem_ancestral_bond_reservation_`
+- Match mode: `Starts with`
+- Display: `Charges`
+- If buff is missing: `Show 0` or `Hide`
 
-### Component Reader (SDK v6)
-Demonstrates the SDK v6 Component Reader API and UI Element API. Exercises all 22 component readers, 4 enumerators, and 10 convenience helpers directly from entity addresses without hardcoded offsets. Shows UI tree navigation using `GetUiChildren`, `ReadUiElement`, and `ComputeUiScreenRect`. Demonstrates helpers like `GetHealthPercent`, `IsAlive`, `GetPlayerName`, `GetItemRarity`, `IsItemIdentified`, `GetStackCount`.
+The overlay will display the SDK `Buff.Charges` value instead of depending on the numeric suffix.
 
-### Render, Terrain, Events, Log tabs
-Exercise the remaining service surface: WorldToScreen + map projection, walkable/height grid + TgtLocation enumeration, OnFrame/OnAreaChange/OnGameAttached/OnGameDetached event hooks with live counters, and Log.Debug/Info/Warn/Error fire buttons.
+## Required repository layout
 
-### SDK Coverage Summary
-The settings tab shows a `SDK Coverage: N/10 services responding` banner above the tab bar. Hover for per-service status (Game, Entities, Components, Inventory, Ui, Render, Terrain, Memory, Log, Events).
+This project intentionally uses the same relative SDK layout as POEFixer's ExamplePlugin:
 
-## Creating Your Own Plugin
+```text
+YourRepo/
+├─ BuffOverlay.sln
+├─ POEFixer/
+│  ├─ plugin_sdk/
+│  │  ├─ PluginAbi.h
+│  │  └─ PluginSDK.h
+│  └─ imgui/
+│     ├─ imgui.cpp
+│     ├─ imgui_draw.cpp
+│     ├─ imgui_tables.cpp
+│     ├─ imgui_widgets.cpp
+│     └─ ...
+└─ Plugins/
+   └─ BuffOverlay/
+      ├─ BuffOverlay.cpp
+      └─ BuffOverlay.vcxproj
+```
 
-1. Copy `Plugins/ExamplePlugin/` to `Plugins/YourPlugin/` (keep the `POEFixer/` folder next to `Plugins/`: the project compiles against `POEFixer/plugin_sdk` and `POEFixer/imgui` by relative path)
-2. Rename the .vcxproj and main .cpp, give the project a new `ProjectGuid`, and add it to a solution (or copy `ExamplePlugin.sln` and point it at the new project)
-3. Subclass `PluginSDK::Plugin` and override the lifecycle hooks (see `ExamplePlugin.cpp`)
-4. Use `ctx()->Service.Method(...)` to access game data (Game, Entities, Components, Inventory, Ui, Render, Terrain, Memory, Log, Events, Overlay, Flasks, Prices, Runeshape, Atlas, Sekhema)
-5. Build and copy the DLL to `Plugins/YourPlugin/` next to the POEFixer executable
+The easiest setup is to clone/download `POEFixer/ExamplePlugin`, then copy this package's `Plugins/BuffOverlay` folder and `BuffOverlay.sln` into that repository root.
 
-## Build from source
+## Build
 
-This repository is the plugin folder from the POEFixer source tree (`Plugins/ExamplePlugin/`) together with the host files it compiles against, kept at the same relative paths:
-
-- `POEFixer/plugin_sdk/` - the POEFixer Plugin SDK v6 headers (`PluginAbi.h`, `PluginSDK.h`)
-- `POEFixer/imgui/` - the Dear ImGui sources the DLL compiles against
-
-1. Install Visual Studio 2022 with the "Desktop development with C++" workload (MSVC v143, Windows 10/11 SDK).
-2. Open `ExamplePlugin.sln`, select **Release | x64** and build the solution.
-3. The plugin is written to `x64\Release\Plugins\ExamplePlugin\ExamplePlugin.dll`.
+1. Install Visual Studio 2022.
+2. In Visual Studio Installer enable **Desktop development with C++**.
+3. Make sure MSVC v143 and the Windows 10/11 SDK are installed.
+4. Open `BuffOverlay.sln`.
+5. Select `Release | x64`.
+6. Build -> Build Solution.
+7. Output: `x64/Release/Plugins/BuffOverlay/BuffOverlay.dll`.
 
 ## Install
 
-Copy `ExamplePlugin.dll` into `Plugins\ExamplePlugin\` next to the POEFixer executable (create the folder if needed), start POEFixer and enable the plugin in the Plugins tab.
+Create this folder next to the POE2Fixer executable:
+
+```text
+Plugins/BuffOverlay/
+```
+
+Copy `BuffOverlay.dll` into it, start POE2Fixer, then enable **Buff Overlay** in the plugin list.
+
+## Notes
+
+The plugin is built against the current public POEFixer ExamplePlugin SDK v6 layout. If POEFixer changes its SDK ABI later, rebuild against the matching current `PluginSDK.h`/`PluginAbi.h` files.
